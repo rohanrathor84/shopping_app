@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import ShopReducer from "./Reducers/ShopReducer"
 
 const store = configureStore({
     reducer: {
+        shop: ShopReducer
     }
 });
 
