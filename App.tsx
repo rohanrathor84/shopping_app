@@ -10,12 +10,15 @@ import {
   Notifications,
   ProductDetails,
   Profile,
+  Statistics,
 } from './src/navigation/ScreenNames';
 import AppHeader from './src/components/AppHeader';
 import messaging from '@react-native-firebase/messaging';
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './src/redux/Store';
+import StatisticsScreen from './src/routes/statistics/StatisticsScreen';
+import { navigationRef } from './src/navigation/NavigationService';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,7 +49,7 @@ const App = () => {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <Provider store={store}>
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <Stack.Navigator
             screenOptions={{
               header: props => (
@@ -65,6 +68,7 @@ const App = () => {
             <Stack.Screen name={ProductDetails} component={ProductDetailsScreen} />
             <Stack.Screen name={Notifications} component={NotificationsScreen} />
             <Stack.Screen name={Profile} component={ProfileScreen} />
+            <Stack.Screen name={Statistics} component={StatisticsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

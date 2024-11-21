@@ -1,19 +1,19 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CustomText from './CustomText';
-import {Notifications, Profile} from '../navigation/ScreenNames';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {ParamListBase, Route} from '@react-navigation/native';
-import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import { Notifications, Profile, Statistics } from '../navigation/ScreenNames';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { ParamListBase, Route } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 interface AppHeaderProps {
   title?: string;
   appNavigation:
-    | NativeStackNavigationProp<ParamListBase, string, undefined>
-    | BottomTabNavigationProp<ParamListBase, string, undefined>;
+  | NativeStackNavigationProp<ParamListBase, string, undefined>
+  | BottomTabNavigationProp<ParamListBase, string, undefined>;
   appRoute: Route<string>;
 }
 
@@ -22,7 +22,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   appNavigation,
   appRoute,
 }) => {
-  const {name} = appRoute;
+  const { name } = appRoute;
 
   const onNotificationsPress = () => {
     appNavigation.navigate(Notifications);
@@ -34,7 +34,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
 
   return (
     <View style={styles.container}>
-      {name === Notifications || name === Profile ? (
+      {name === Notifications || name === Profile || name === Statistics ? (
         <View style={styles.leftSubContainer}>
           <TouchableOpacity
             onPress={() => appNavigation.goBack()}
@@ -46,7 +46,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
       ) : (
         <CustomText style={styles.title}>{title}</CustomText>
       )}
-      {name !== Notifications && name !== Profile && (
+      {name !== Notifications && name !== Profile && name !== Statistics && (
         <View style={styles.iconContainer}>
           <TouchableOpacity onPress={onNotificationsPress} activeOpacity={1}>
             <Octicons name="bell" size={24} color="#000" />

@@ -7,3 +7,4 @@ export const Cart = "Cart";
 export const ProductDetails = "ProductDetails";
 export const Notifications = "Notifications";
 export const Profile = "Profile";
+export const Statistics = "Statistics"

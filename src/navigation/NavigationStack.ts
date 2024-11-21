@@ -8,4 +8,5 @@ export type RootStackParamList = {
     Cart: { itemId: number };
     Notifications: undefined;
     Profile: undefined;
+    Statistics: undefined;
 };
