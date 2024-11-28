@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axiosRetry from 'axios-retry';
 import { requestInterceptor } from './RequestInterceptor';
 import { responseInterceptor } from './ResponseInterceptor';
 import { BASE_URL } from './Urls';
@@ -13,20 +14,45 @@ const apiClient: AxiosInstance = axios.create({
 apiClient.interceptors.request.use(requestInterceptor);
 apiClient.interceptors.response.use(responseInterceptor.success, responseInterceptor.error);
 
-// Retry logic
-const retryRequest = async (error: any) => {
-    const config = error.config;
-    // Only retry if config option for retry is true
-    if (config && config.retry && config.__retryCount < config.retry) {
-        config.__retryCount += 1;
-        return apiClient(config);
-    }
-    return Promise.reject(error);
-};
+// Configure axios-retry
+axiosRetry(apiClient, {
+    retries: 3, // Number of retries
+    retryDelay: (retryCount) => {
+        console.log(`Retrying request... Attempt ${retryCount}`);
+        return retryCount * 1000; // Exponential backoff: 1s, 2s, 3s, etc.
+    },
+    retryCondition: (error) => {
+        // Retry on network errors or 5xx server errors
+        if (
+            axiosRetry.isNetworkError(error) || // Retry for network errors
+            axiosRetry.isRetryableError(error) || // Retry for retryable errors
+            (error.response && error.response.status >= 500 && error.response.status <= 599) // Retry for 5xx server errors
+        ) {
+            return true;
+        }
+        return false; // Explicitly return false when conditions are not met
+    },
+});
 
-apiClient.interceptors.response.use(
-    (response) => response,
-    async (error) => retryRequest(error)
-);
+export async function apiRequest<T>(
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+): Promise<T> {
+    try {
+        const response = await apiClient.request<T>({
+            method,
+            url,
+            data,
+            ...config,
+        });
+        return response.data;
+    } catch (error) {
+        // Handle error globally if needed
+        console.error('[Global API Error]', error);
+        throw error;
+    }
+}
 
 export default apiClient;

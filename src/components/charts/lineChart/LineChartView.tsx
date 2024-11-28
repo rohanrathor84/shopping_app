@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import { CartesianChart, Line } from "victory-native"
+import useLineChartData from './lineData';
 
 const randomNumber = () => Math.floor(Math.random() * (50 - 25 + 1)) + 25;
 
@@ -11,14 +12,14 @@ const DATA = (numberPoints = 13) =>
     }));
 
 const LineChartView = () => {
-    const [data, setData] = useState(DATA());
+    const data = useLineChartData('http://192.168.0.104:5000');
 
     return (
-        <CartesianChart data={data} xKey="day" yKeys={["sales"]}>
+        <CartesianChart data={data} xKey="time" yKeys={["value"]}>
             {({ points }) => (
                 //👇 pass a PointsArray to the Line component, as well as options.
                 <Line
-                    points={points.sales}
+                    points={points.value}
                     color="red"
                     strokeWidth={3}
                     animate={{ type: "timing", duration: 300 }}

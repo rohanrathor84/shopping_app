@@ -3,11 +3,12 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import CustomText from './CustomText';
+import CustomText from './common/CustomText';
 import { Notifications, Profile, Statistics } from '../navigation/ScreenNames';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ParamListBase, Route } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { white } from '../assets/resources/Colors';
 
 interface AppHeaderProps {
   title?: string;
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 15,
     height: 60,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: white,
   },
   leftSubContainer: {
     flexDirection: 'row',
