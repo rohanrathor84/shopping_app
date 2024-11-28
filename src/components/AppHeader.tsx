@@ -8,7 +8,7 @@ import { Notifications, Profile, Statistics } from '../navigation/ScreenNames';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ParamListBase, Route } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { white } from '../assets/resources/Colors';
+import { black, white } from '../assets/resources/Colors';
 
 interface AppHeaderProps {
   title?: string;
@@ -40,7 +40,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
           <TouchableOpacity
             onPress={() => appNavigation.goBack()}
             activeOpacity={1}>
-            <Icon name="arrow-back" size={24} color="#000" />
+            <Icon name="arrow-back" size={24} color={black} />
           </TouchableOpacity>
           <CustomText style={styles.subTitle}>{name}</CustomText>
         </View>
@@ -50,7 +50,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
       {name !== Notifications && name !== Profile && name !== Statistics && (
         <View style={styles.iconContainer}>
           <TouchableOpacity onPress={onNotificationsPress} activeOpacity={1}>
-            <Octicons name="bell" size={24} color="#000" />
+            <Octicons name="bell" size={24} color={black} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={onProfilePress}
@@ -59,7 +59,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
             <MaterialCommunityIcons
               name="account-circle-outline"
               size={24}
-              color="#000"
+              color={black}
             />
           </TouchableOpacity>
         </View>

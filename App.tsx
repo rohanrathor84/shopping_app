@@ -19,6 +19,7 @@ import { Provider } from 'react-redux';
 import store from './src/redux/Store';
 import StatisticsScreen from './src/routes/statistics/StatisticsScreen';
 import { navigationRef } from './src/navigation/NavigationService';
+import { black, white } from './src/assets/resources/Colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? "#000" : "#fff",
+    backgroundColor: isDarkMode ? black : white,
     flex: 1
   };
   useEffect(() => {
