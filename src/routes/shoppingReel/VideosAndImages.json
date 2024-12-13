@@ -1,0 +1,136 @@
+[
+    {
+        "id": "1",
+        "type": "video",
+        "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\n\nLicensed under the Creative Commons Attribution license\nhttps://www.bigbuckbunny.org",
+        "productImages": []
+    },
+    {
+        "id": "2",
+        "type": "image",
+        "videoUrl": "",
+        "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself.",
+        "productImages": [
+            {
+                "id": "102",
+                "imageUrl": "https://picsum.photos/id/102/4320/3240"
+            },
+            {
+                "id": "103",
+                "imageUrl": "https://picsum.photos/id/103/2592/1936"
+            },
+            {
+                "id": "104",
+                "imageUrl": "https://picsum.photos/id/104/3840/2160"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "type": "image",
+        "videoUrl": "",
+        "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself.",
+        "productImages": [
+            {
+                "id": "111",
+                "imageUrl": "https://picsum.photos/id/111/4400/2656"
+            },
+            {
+                "id": "112",
+                "imageUrl": "https://picsum.photos/id/112/4200/2800"
+            },
+            {
+                "id": "113",
+                "imageUrl": "https://picsum.photos/id/113/4168/2464"
+            },
+            {
+                "id": "114",
+                "imageUrl": "https://picsum.photos/id/114/3264/2448"
+            },
+            {
+                "id": "115",
+                "imageUrl": "https://picsum.photos/id/115/1500/1000"
+            },
+            {
+                "id": "116",
+                "imageUrl": "https://picsum.photos/id/116/3504/2336"
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "type": "video",
+        "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        "description": "Song : Raja Raja Kareja Mein Samaja\nAlbum : Raja Kareja Mein Samaja\nArtist : Radhe Shyam Rasia\nSinger : Radhe Shyam Rasia\nMusic Director : Sohan Lal, Dinesh Kumar\nLyricist : Vinay Bihari, Shailesh Sagar, Parmeshwar Premi\nMusic Label : T-Series",
+        "productImages": []
+    },
+    {
+        "id": "5",
+        "type": "image",
+        "videoUrl": "",
+        "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself.",
+        "productImages": [
+            {
+                "id": "106",
+                "imageUrl": "https://picsum.photos/id/106/2592/1728"
+            },
+            {
+                "id": "107",
+                "imageUrl": "https://picsum.photos/id/107/5000/3333"
+            },
+            {
+                "id": "108",
+                "imageUrl": "https://picsum.photos/id/108/2000/1333"
+            },
+            {
+                "id": "109",
+                "imageUrl": "https://picsum.photos/id/109/4287/2392"
+            },
+            {
+                "id": "110",
+                "imageUrl": "https://picsum.photos/id/110/5000/3333"
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "type": "video",
+        "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "description": "Song : Raja Raja Kareja Mein Samaja\nAlbum : Raja Kareja Mein Samaja\nArtist : Radhe Shyam Rasia\nSinger : Radhe Shyam Rasia\nMusic Director : Sohan Lal, Dinesh Kumar\nLyricist : Vinay Bihari, Shailesh Sagar, Parmeshwar Premi\nMusic Label : T-Series",
+        "productImages": []
+    },
+    {
+        "id": "7",
+        "type": "video",
+        "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        "description": " Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when Batman's escapes aren't quite big enough. For $35. Learn how to use Chromecast with Google Play Movies and more at google.com/chromecast.",
+        "productImages": []
+    },
+    {
+        "id": "8",
+        "type": "image",
+        "videoUrl": "",
+        "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\n\nLicensed under the Creative Commons Attribution license\nhttps://www.bigbuckbunny.org",
+        "productImages": [
+            {
+                "id": "117",
+                "imageUrl": "https://picsum.photos/id/117/1544/1024"
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "type": "video",
+        "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\n\nLicensed under the Creative Commons Attribution license\nhttps://www.bigbuckbunny.org",
+        "productImages": []
+    },
+    {
+        "id": "10",
+        "type": "video",
+        "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "description": "Song : Raja Raja Kareja Mein Samaja\nAlbum : Raja Kareja Mein Samaja\nArtist : Radhe Shyam Rasia\nSinger : Radhe Shyam Rasia\nMusic Director : Sohan Lal, Dinesh Kumar\nLyricist : Vinay Bihari, Shailesh Sagar, Parmeshwar Premi\nMusic Label : T-Series",
+        "productImages": []
+    }
+]

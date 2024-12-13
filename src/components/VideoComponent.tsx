@@ -8,21 +8,23 @@ import {
     View,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
-import { VideoProps } from '../types/Type';
 import Video, { OnLoadData, OnProgressData } from 'react-native-video';
 import * as Progress from 'react-native-progress';
-import { gray600, white } from '../assets/resources/Colors';
+import { gray300, green } from '../assets/resources/Colors';
 
-interface IVideoComponent {
-    item: VideoProps;
+const screenWidth = Dimensions.get('screen').width;
+const windowHeight = Dimensions.get('window').height;
+
+interface IVideoComponentProps {
+    videoUrl: string;
     isNewItem: boolean;
     isVideoPaused: boolean;
     isVideoMuted: boolean;
     onVideoClick: (event: GestureResponderEvent) => void;
 }
 
-const VideoComponent: React.FC<IVideoComponent> = props => {
-    const { item, isNewItem, isVideoPaused, isVideoMuted, onVideoClick } = props;
+const VideoComponent: React.FC<IVideoComponentProps> = props => {
+    const { videoUrl, isNewItem, isVideoPaused, isVideoMuted, onVideoClick } = props;
     const appState = useRef(AppState.currentState);
     const [isPaused, setIsPaused] = useState(isVideoPaused);
     const [duration, setDuration] = useState(0);
@@ -58,15 +60,16 @@ const VideoComponent: React.FC<IVideoComponent> = props => {
         <View style={styles.mainContainer}>
             <Progress.Bar
                 progress={progress}
-                color={white}
-                unfilledColor={gray600}
+                color={green}
+                unfilledColor={gray300}
                 useNativeDriver={true}
-                width={Dimensions.get('screen').width}
-                height={2}
+                width={screenWidth}
+                height={4}
                 borderRadius={0}
+                borderWidth={0}
                 style={styles.progressStyle} />
             <Video
-                source={{ uri: item.videoUrl }}
+                source={{ uri: videoUrl }}
                 paused={isPaused || isNewItem}
                 controls={false}
                 style={styles.videoStyle}
@@ -102,7 +105,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     controllerStyle: {
-        height: Dimensions.get('window').height,
+        height: windowHeight,
         position: 'absolute',
         top: 0,
         bottom: 0,
@@ -110,7 +113,6 @@ const styles = StyleSheet.create({
         right: 0,
     },
     progressStyle: {
-        borderTopColor: white,
-        borderBottomColor: gray600
+        marginTop: 4,
     }
 });

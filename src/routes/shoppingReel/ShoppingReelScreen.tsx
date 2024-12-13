@@ -8,16 +8,17 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { apiRequest } from '../../services/Apiclient';
 import VideoComponent from '../../components/VideoComponent';
-import { VideoProps } from '../../types/Type';
+import { ShoppingReelDataProps } from '../../types/Type';
 import LoadingScreen from '../../components/common/LoadingScreen';
 import ErrorScreen from '../../components/common/ErrorScreen';
-import videos from './Videos.json';
+import videosAndImages from './VideosAndImages.json';
 import { black } from '../../assets/resources/Colors';
 import { activeTabName } from '../../navigation/NavigationService';
 import { ShoppingReel } from '../../navigation/ScreenNames';
+import ImageComponent from '../../components/ImageComponent';
 
 const ShoppingReelScreen = () => {
-  const [videoData, setVideoData] = useState<VideoProps[]>([]);
+  const [videoData, setVideoData] = useState<ShoppingReelDataProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showRetry, setShowRetry] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,12 +45,12 @@ const ShoppingReelScreen = () => {
   const fetchData = async () => {
     setIsLoading(true);
     setShowRetry(false);
-    await apiRequest<[VideoProps]>(
+    await apiRequest<[ShoppingReelDataProps]>(
       'GET',
-      'https://gist.githubusercontent.com/poudyalanil/ca84582cbeb4fc123a13290a586da925/raw/14a27bd0bcd0cd323b35ad79cf3b493dddf6216b/videos.json',
+      'https://picsum.photos/v2/list',
     )
       .then(value => {
-        setVideoData(videos.slice(0, PAGE_SIZE));
+        setVideoData(videosAndImages.slice(0, PAGE_SIZE));
       })
       .catch(() => {
         setShowRetry(true);
@@ -65,8 +66,8 @@ const ShoppingReelScreen = () => {
     const endIndex = startIndex + PAGE_SIZE;
 
     // Check if more data exists
-    if (startIndex < videos.length) {
-      const newData = videos.slice(startIndex, endIndex);
+    if (startIndex < videosAndImages.length) {
+      const newData = videosAndImages.slice(startIndex, endIndex);
       setVideoData(prevData => [...prevData, ...newData]);
       setCurrentPage(nextPage);
       setExtraData(extraData => !extraData);
@@ -92,46 +93,58 @@ const ShoppingReelScreen = () => {
     setIsVideoMuted(mute => !mute);
   };
 
-  const renderItem = ({ item, index }: ListRenderItemInfo<VideoProps>) => {
+  const renderItem = ({ item, index }: ListRenderItemInfo<ShoppingReelDataProps>) => {
+    const { type, videoUrl, productImages } = item;
     return (
-      <View key={index} style={[styles.mainContainer, {}]}>
-        <VideoComponent
-          item={item}
-          isNewItem={index !== viewableItems}
-          isVideoPaused={isVideoPaused}
-          isVideoMuted={isVideoMuted}
-          onVideoClick={onVideoClick}
-        />
+      <View key={index} style={styles.mainContainer}>
+        {type == 'video' ? (
+          <VideoComponent
+            videoUrl={videoUrl}
+            isNewItem={index !== viewableItems}
+            isVideoPaused={isVideoPaused}
+            isVideoMuted={isVideoMuted}
+            onVideoClick={onVideoClick}
+          />
+        ) : (
+          <ImageComponent productImages={productImages} isNewItem={index !== viewableItems} />
+        )}
       </View>
+    );
+  };
+
+  const renderContent = () => {
+    if (isLoading) {
+      return <LoadingScreen />;
+    }
+    if (showRetry) {
+      return <ErrorScreen onRetry={retryFetchingData} />;
+    }
+    return (
+      <FlatList
+        data={videoData}
+        keyExtractor={(item, index) => `${item.id}-${index}`}
+        renderItem={renderItem}
+        extraData={extraData}
+        showsVerticalScrollIndicator={false}
+        pagingEnabled={true}
+        bounces={false}
+        initialNumToRender={1}
+        maxToRenderPerBatch={1}
+        removeClippedSubviews={true}
+        onEndReachedThreshold={0.5}
+        onEndReached={loadMoreData}
+        viewabilityConfig={viewConfigRef.current}
+        onViewableItemsChanged={onViewRef.current}
+      />
     );
   };
 
   return (
     <View style={styles.mainContainer}>
-      {isLoading ? (
-        <LoadingScreen />
-      ) : showRetry ? (
-        <ErrorScreen onRetry={retryFetchingData} />
-      ) : (
-        <FlatList
-          data={videoData}
-          keyExtractor={(item, index) => `${item.id}-${index}`}
-          renderItem={renderItem}
-          extraData={extraData}
-          showsVerticalScrollIndicator={false}
-          pagingEnabled={true}
-          bounces={false}
-          initialNumToRender={1}
-          maxToRenderPerBatch={1}
-          removeClippedSubviews={true}
-          onEndReachedThreshold={0.5}
-          onEndReached={loadMoreData}
-          viewabilityConfig={viewConfigRef.current}
-          onViewableItemsChanged={onViewRef.current}
-        />
-      )}
+      {renderContent()}
     </View>
   );
+
 };
 
 export default ShoppingReelScreen;

@@ -48,4 +48,5 @@ export const gray900 = "#212121",
         "#EFEBE9",
         "#FAFAFA",
         "#ECEFF1",
-    ];
+    ],
+    green = "#4CAF50";
